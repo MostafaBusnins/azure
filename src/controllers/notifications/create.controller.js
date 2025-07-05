@@ -1,4 +1,4 @@
-const FcmTokenModel = require("../../models/fcm.model");
+import FcmTokenModel from "../../models/fcm.model.js";
 
 const createFcmToken = async (req, res) => {
   const { fcmToken } = req.body;
@@ -30,6 +30,5 @@ const createFcmToken = async (req, res) => {
     });
   }
 };
-module.exports = {
-    createFcmToken,
-  };
+
+export { createFcmToken };

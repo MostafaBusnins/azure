@@ -1,5 +1,3 @@
-const { startReading, getLatestData } = require("./azur");
-module.exports = {
-  startReading,
-  getLatestData,
-};
+import { startReading, getLatestData } from "./azur.js";
+
+export { startReading, getLatestData };

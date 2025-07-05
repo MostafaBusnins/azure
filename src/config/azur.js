@@ -1,14 +1,18 @@
-const { EventHubConsumerClient } = require("@azure/event-hubs");
-
-const connectionString = process.env.CONNECTION_STRING;
-const eventHubName = process.env.EVENT_HUB_NAME;
-const consumerGroup = "$Default";
+import { EventHubConsumerClient } from "@azure/event-hubs";
 
 let latestData = null;
 
 const startReading = async () => {
   try {
-    const client = new EventHubConsumerClient(consumerGroup, connectionString, eventHubName);
+    const connectionString = process.env.CONNECTION_STRING;
+    const eventHubName = process.env.EVENT_HUB_NAME;
+    const consumerGroup = "$Default";
+
+    const client = new EventHubConsumerClient(
+      consumerGroup,
+      connectionString,
+      eventHubName
+    );
 
     console.log("🔄 بدأ الاستماع من Azure IoT Hub...");
 
@@ -21,7 +25,7 @@ const startReading = async () => {
       },
       processError: async (err) => {
         console.error("❌ خطأ أثناء قراءة البيانات:", err.message);
-      }
+      },
     });
   } catch (error) {
     console.error("❌ فشل الاتصال بـ Azure:", error.message);
@@ -30,7 +34,4 @@ const startReading = async () => {
 
 const getLatestData = () => latestData;
 
-module.exports = {
-  startReading,
-  getLatestData,
-};
+export { startReading, getLatestData };

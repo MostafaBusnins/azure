@@ -1,12 +1,11 @@
-const express = require("express");
-const {
-  sendReadsSensorsController,
-} = require("../controllers/sensors-reads.controller");
-const { createFcmToken } = require("../controllers/notifications");
+import express from "express";
+import { sendReadsSensorsController } from "../controllers/sensors-reads.controller.js";
+import { createFcmToken } from "../controllers/notifications/index.js";
 
 const router = express.Router();
 
 router.get("/sensors-reads", sendReadsSensorsController);
 
 router.post("/fcm-token", createFcmToken);
-module.exports = router;
+
+export default router;

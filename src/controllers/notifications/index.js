@@ -1,5 +1,3 @@
-const { createFcmToken } = require("./create.controller");
+import { createFcmToken } from "./create.controller.js";
 
-module.exports = {
-    createFcmToken
-}
+export { createFcmToken };

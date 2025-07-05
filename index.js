@@ -1,17 +1,20 @@
-require("dotenv").config();
-const express = require("express");
-const { startReading } = require("./src/config/azur");
-const allRoutes = require("./src/routes/all.routes");
-const { dbConnection } = require("./src/config/db");
+import dotenv from "dotenv";
+import express from "express";
+import * as azur from "./src/config/azur.js";
+import allRoutes from "./src/routes/all.routes.js";
+import * as db from "./src/config/db.js";
+
+dotenv.config();
 
 const app = express();
-dbConnection()
+db.dbConnection();
+
 app.use(express.json());
-app.use("/api/v1/" ,allRoutes);
+app.use("/api/v1/", allRoutes);
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`✅ API شغالة على http://localhost:${port}`);
-  startReading(); 
+app.listen(port, function() {
+  console.log("✅ API شغالة على http://localhost:" + port);
+  azur.startReading();
 });

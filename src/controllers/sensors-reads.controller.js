@@ -1,6 +1,6 @@
-const { getLatestData } = require("../config/index");
+import { getLatestData } from "../config/index.js";
 
-exports.sendReadsSensorsController = async (req, res) => {
+export const sendReadsSensorsController = async (req, res) => {
   const data = getLatestData();
 
   if (!data) {
